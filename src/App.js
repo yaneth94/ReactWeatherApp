@@ -6,7 +6,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import { Grid , Row, Col } from 'react-flexbox-grid';
-import ForecastExtended from './components/ForecastExtended';
+import ForecastExtendedContainer from './containers/ForecastExtendedContainer';
 import LocationListContainer from './containers/LocationListContainer';
 //import { setCity } from './actions'; // pasando la action a otra carpeta video 122 se quita
 //import { store } from './store'; // pasa la logica del store 
@@ -31,12 +31,12 @@ window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());*/
 
 
 class App extends Component {    
-
+/* Eliminado en el video 126 porque ya no es necesario
   constructor() {
     super();
     //solamente en el constructor del componente en ningun otro lugar se puede
     this.state = { city:null} ;
-  }
+  }*/
   /*
   handleSelectionLocation = city =>{
     this.setState({ city})
@@ -44,7 +44,7 @@ class App extends Component {
     this.props.setCity(city);
   }*/
   render() {
-    const {city} = this.state;
+    //const {city} = this.state;
       return ( 
           <Grid>
             <Row>
@@ -58,21 +58,23 @@ class App extends Component {
             </Row>  
             <Row>
               <Col xs={12} md={6}>
-              <LocationListContainer 
-                  cities={cities} />
+              <LocationListContainer cities={cities} />
               </Col>
               <Col xs={12} md={6}>
                 <Paper elevation={4}>
                 <div className="detail">
                   {
+                    //Eliminado en el video 126
                     //si solo dejamos city? no viene nulo 
                     // cuando se niega ponemos estamos poniendo que si viene nulo
                     /* !city? 
                       <h1>No se selecciono ciudad</h1>:
-                      <ForecastExtended city={city}></ForecastExtended>*/
+                      <ForecastExtended city={city}></ForecastExtended>
                     city &&
-                    <ForecastExtended city={city}></ForecastExtended>
+                    <ForecastExtendedContainer></ForecastExtendedContainer>*/
+
                   }
+                  <ForecastExtendedContainer></ForecastExtendedContainer>
                 </div>
                 </Paper>
               </Col>
