@@ -1,30 +1,12 @@
-import React,{Component} from 'react';
+import React from 'react';
 import {PropTypes} from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import trasnforWeather from './../../services/transformWeather';
 import Location from './Location';
 import WeatherData from './WeatherData';
 import './styles.css';
-import getUrlWeatherByCity from '../../services/getUrlWeatherByCity';
 
-class WeatherLocation extends Component {
 
-    constructor(props){
-        super(props);
-        const { city } = props;
-        this.state ={
-            city,
-            data: null,
-        };
-        console.log("constructor");
-    }
-    componentDidMount() {
-        console.log("componentDidMount");
-        this.handleUpdateClick();
-    }
-    componentDidUpdate(prevProps, prevState) {
-        console.log("componentDidUpdate"); 
-    }
+/*
 
     handleUpdateClick = () => {
         const api_weather = getUrlWeatherByCity(this.state.city);
@@ -44,25 +26,27 @@ class WeatherLocation extends Component {
 
         
     }
-    render(){
-        const  {onWeatherLocationClick } = this.props;
-        console.log("render");
-        const {city, data} =this.state;
-        return(
-            <div className="weatherLocationCont" onClick={onWeatherLocationClick}>
-            <Location city={city}></Location>
+*/
+
+
+const WeatherLocation =({onWeatherLocationClick,city,data }) => (
+    <div className="weatherLocationCont" onClick={onWeatherLocationClick}>
+        <Location city={city}></Location>
             {data ? 
                 <WeatherData data={data}></WeatherData> :
                 <CircularProgress size={50}></CircularProgress>
             }
-        </div>
-        );
-    }
-   
-};
+    </div>
+);
 
 WeatherLocation.propTypes ={
     city: PropTypes.string.isRequired,
     onWeatherLocationClick: PropTypes.func,
+    data: PropTypes.shape({
+        temperature: PropTypes.number.isRequired,
+        weatherState: PropTypes.string.isRequired,
+        humidity: PropTypes.number.isRequired,
+        wind: PropTypes.string.isRequired,
+    }),
 }
 export default WeatherLocation;
