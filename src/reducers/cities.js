@@ -7,7 +7,7 @@ export const cities = (state = {},action) => {
         case SET_FORECAST_DATA:{
             const { city, forecastData } = action.payload;
             //spread operator se le suma
-            return { ...state, [city]: { ...state[city], forecastData }};
+            return { ...state, [city]: { ...state[city], forecastData, forecastDataDate: new Date() }};
         }
         case GET_WEATHER_CITY:{
             const city = action.payload;
